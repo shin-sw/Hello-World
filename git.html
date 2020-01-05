@@ -1,0 +1,85 @@
+// git
+
+$echo 'export PATH=/通したい/パス:$PATH' >> .bash_profilec
+
+【ls】階層表示
+【mkdir mysite】mysiteという階層をつくる
+【:wq enter】エディタ画面から抜け出す　write and quit
+【:q】quit
+
+【コミット】リポジトリに格納される一つの履歴
+【作業ツリー】編集時に作業している場所
+【ステージングエリア】＝インデックス。リポジトリに対してコミットする前にコミットの調整ができる場所。バッファ
+【リベース】ブランチから変更を取り出してきて、それを別ブランチの先頭で再生
+【hunk(ハンク)】ファイル内の変更
+
+【git config --list】名前などの情報を確認
+【git config --global --list】
+【git gui】GUIインターフェイスを起動
+
+【git log】コミット名、作者、コメントを表示
+【git log -2】2個のコミットを表示
+【git status】作業ツリーの状態を確認。
+
+【git init】リポジトリを作成
+
+【git add index.html】htmlファイルをリポジトリに追加。変更をステージする際にも使用
+【git add -i】対話型のシェルが起動。returnで対話モードを抜ける
+【git add -p】パッチモードを直接始動
+
+【git commit -m "htmlファイルを追加しました"】コメントをつけてコミット
+【git commit -m "変更しました" -a】全ての変更をコメントを付けてコミット
+
+【git branch RB_1.0 master】ブランチを作成＜ブランチ名＞＜分岐元のブランチ＞
+【git checkout RB_1.0】RB_1.0にブランチを切替
+【git branch RB_1.0】ブランチを削除
+【git branch -m master mymaster】ブランチ名を変更（move）
+【git branch -m master contacts】ブランチ名を強制的に変更（move）
+
+
+【git tag 1.0 RB_1.0】タグを打つ＜タグの名前＞＜タグを打ちたいポイント＞
+【git tag】タグ一覧を表示
+
+【git diff】作業ツリー上の変更
+【git diff --cached】ステージングエリアとリポジトリ間の差分
+【git diff HEAD】ステージングエリアを含めた全ての作業ツリー上の変更をリポジトリと比較
+
+【git reset --hard HEAD^】最後のコミットを取り除く
+
+// リベース
+1.masterブランチに切り替える
+2.リベースコマンドを実行
+3.ブランチを削除
+【git rebase RB_1.0】
+【gir branch -d RB_1.0】
+
+// リリースブランチ削除後にバージョン1.0x用のパッチを作成
+【git branch RB_1.0.1 1.0】＜ブランチ名＞＜元のタグ名＞
+
+【git mv index.html hello.html】ファイル名の変更
+
+// 直接マージ
+1.マージ先に切り替える
+2.マージコマンドを実行
+【git checkout master】
+【git merge alternate】＜マージさせたいブランチ名＞
+
+// 圧縮コミット
+1.マージ先に切り替える
+2.パラメータ--squashを付けてマージコマンドを実行
+3.コミット
+【git checkout master】
+【git merge --squash contact】contactの内容を圧縮してマージ
+【git commit -m "add contact page" -m "has primary and secondary email"】
+
+// チェリーピック
+1.マージ元のコミット名を記録
+2.マージ先にチェックアウト
+3.チェリーピックコマンドを実行
+4.コミット
+【git checkout master】
+【git cherry-pick 38367f5】
+【git cherry-pick -n 38367f5】複数のコミットをチェリーピック
+【git commit】メッセージはつけない
+
+// コンフリクト

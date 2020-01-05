@@ -1,0 +1,44 @@
+// docker
+
+docker run --name test-mysql2 -e MYSQL_ROOT_PASSWORD=test-pw -d mysql:5.7.25
+
+// これでうまく行った
+docker run --name test-wordpress4 --link test-mysql2:mysql -d -p 8080:80 wordpress:4.9.1
+
+// これでうまく行った
+docker run --name test-wordpress3 --link test-mysql2:mysql -d -p 8080:80 wordpress:4.9.1
+
+
+mysql:5.7.25
+wordpress:4.9.1
+
+// composerインストール
+brew install openssl
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+sudo mv composer.phar /usr/local/bin/composer
+composer --version
+
+docker pull wordpress:4.9.1
+
+docker stop test-wordpress2
+
+docker
+
+docker network create docktest01
+
+docker run --name mysqldb --net docktest01 -e MYSQL_ROOT_PASSWORD=xxxx -d mysql:5.7.25
+
+docker run mysql:5.7.25 docktest01
+
+
+docker run --name wordpress-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_USER=pugiemonn -e MYSQL_PASSWORD=password -e MYSQL_DATABASE=wordpressdb -d mysql:5.7.25
+
+// dockerイメージ一覧
+docker ps
+
+//
+
+
+//
