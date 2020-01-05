@@ -1,0 +1,20 @@
+
+
+// composerインストール
+brew install openssl
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+sudo mv composer.phar /usr/local/bin/composer
+composer --version
+
+//////////////////
+mysql:5.7.25
+wordpress:4.9.1
+//////////////////
+
+// mySQLのrun
+docker run --name test-mysql2 -e MYSQL_ROOT_PASSWORD=test-pw -d mysql:5.7.25
+
+// wordpressのrun
+docker run --name test-wordpress3 --link test-mysql2:mysql -d -p 8080:80 wordpress:4.9.1
